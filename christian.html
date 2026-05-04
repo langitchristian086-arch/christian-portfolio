@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Christian Langit · First-Year IT | Mangaldan, Pangasinan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a192f;  /* deep navy blue core */
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Poppins', sans-serif;
+      color: #e6f0ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* subtle navy texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 15% 30%, rgba(45, 110, 180, 0.08) 2%, transparent 2.5%);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid rgba(78, 145, 210, 0.2);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    /* cards with navy glass effect */
+    .navy-card {
+      background: rgba(13, 35, 60, 0.75);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      border: 1px solid rgba(56, 128, 255, 0.35);
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(130deg, #FFFFFF, #7ab3c8, #3b82f6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-left: 5px solid #3b82f6;
+      padding-left: 1.2rem;
+      margin-bottom: 2rem;
+      color: #f0f9ff;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #bfdbfe;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 3rem 0;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      background: rgba(59, 130, 246, 0.18);
+      backdrop-filter: blur(4px);
+      padding: 0.35rem 1.3rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      color: #93c5fd;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #cbdff2;
+      margin-top: 1rem;
+      max-width: 600px;
+      line-height: 1.4;
+    }
+
+    .highlight {
+      color: #60a5fa;
+      font-weight: 500;
+    }
+
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+
+    .about-text {
+      flex: 2;
+      background: rgba(10, 30, 50, 0.65);
+      border-radius: 1.8rem;
+      padding: 1.8rem;
+      border: 1px solid #2c5282;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      color: #e2edff;
+      font-size: 1rem;
+    }
+
+    .info-panel {
+      flex: 1.2;
+      background: rgba(2, 20, 38, 0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 1.8rem;
+      padding: 1.8rem;
+      border: 1px solid #2b4f8c;
+    }
+
+    .info-panel ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .info-panel li {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed #2c4f7a;
+      padding-bottom: 0.6rem;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .skill-card {
+      background: rgba(12, 35, 60, 0.7);
+      backdrop-filter: blur(6px);
+      border-radius: 1.6rem;
+      padding: 1.6rem;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: #3b82f6;
+      background: rgba(18, 45, 80, 0.85);
+      box-shadow: 0 20px 28px -10px rgba(0, 80, 200, 0.3);
+    }
+
+    .card-icon {
+      font-size: 2.3rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .tech-stack {
+      background: rgba(0, 20, 40, 0.7);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid #1e4870;
+    }
+
+    .skills-badge {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.3rem 0 0.5rem;
+    }
+
+    .badge {
+      background: #112f4b;
+      border-radius: 3rem;
+      padding: 0.45rem 1.2rem;
+      border: 1px solid #3b82f670;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #cfdfff;
+      transition: 0.2s;
+    }
+
+    .badge:hover {
+      background: #1e3a5f;
+      border-color: #60a5fa;
+      color: white;
+    }
+
+    .contact-modern {
+      background: rgba(5, 25, 45, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      border: 1px solid #2f6ea2;
+    }
+
+    .contact-block {
+      flex: 1;
+    }
+
+    .contact-block p {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 0 3rem;
+      font-size: 0.8rem;
+      color: #8ba6c9;
+      border-top: 1px solid #173a5f;
+      margin-top: 0.5rem;
+    }
+
+    .scroll-hint {
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: #8ba5cc;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    @media (max-width: 780px) {
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 1.7rem;
+      }
+      .container {
+        padding: 0 1.3rem;
+      }
+      section {
+        padding: 3rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <!-- Hero Section - refined navy aesthetic -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">⚓ Mangaldan · First-year IT</div>
+      <h1>Christian<br>Langit</h1>
+      <p class="hero-subtitle">From <span class="highlight">Mangaldan, Pangasinan</span> — crafting responsive interfaces, mastering JavaScript, and building a future with clean, intentional code.</p>
+      <div class="scroll-hint">
+        <span>⟱</span> navigate through my journey
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section: updated location Mangaldan -->
+  <section>
+    <div class="container">
+      <h2>◈ rooted in Mangaldan · building beyond borders</h2>
+      <div class="about-grid">
+        <div class="about-text navy-card">
+          <p>👋 I'm <strong class="highlight">Christian Langit</strong>, a passionate first-year IT student born and raised in <strong class="highlight">Mangaldan, Pangasinan</strong>. My interest in technology started from small experiments with HTML, and today I’m fully immersed in frontend development, logical thinking, and version control.</p>
+          <p>I love turning ideas into interactive web experiences. Living in Pangasinan taught me patience and discipline — exactly what coding requires. Every project, whether a mini-app or a responsive layout, is a chance to level up my skills.</p>
+          <p>This portfolio represents my first-year milestones: university tasks, personal experiments, and the continuous drive to become a well-rounded developer. I'm always eager to learn and collaborate with like-minded people.</p>
+        </div>
+        <div class="info-panel">
+          <p style="font-weight: 700; font-size: 1.1rem;">📍 student profile</p>
+          <ul>
+            <li>🎓 <span>BS Information Technology · 1st Year</span></li>
+            <li>🏡 <span>Mangaldan, Pangasinan, PH</span></li>
+            <li>💻 <span>Frontend focus & core logic</span></li>
+            <li>⚡ <span>daily commits · constant learner</span></li>
+            <li>🌊 <span>proud probinsyano developer</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & domain - only remaining: Developer Tools + Discrete Math -->
+  <section>
+    <div class="container">
+      <h2>⚙️ technical territories</h2>
+      <div class="grid-cards">
+        <div class="skill-card">
+          <div class="card-icon">🔧</div>
+          <h3>Developer Tools</h3>
+          <p>Git, GitHub, VS Code, Chrome DevTools — version control basics and modern workflow habits.</p>
+        </div>
+        <div class="skill-card">
+          <div class="card-icon">📐</div>
+          <h3>Discrete Mathematics</h3>
+          <p>Logic, sets, proofs, and foundations that sharpen analytical thinking for computing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech arsenal & tools: simplified, removed next horizons section -->
+  <section>
+    <div class="container">
+      <h2>🧰 current arsenal</h2>
+      <div class="tech-stack">
+        <p style="font-weight: 500; margin-bottom: 0.5rem;">🔹 actively mastering</p>
+        <div class="skills-badge">
+          <span class="badge">HTML5</span>
+          <span class="badge">CSS3</span>
+          <span class="badge">JavaScript (ES6+)</span>
+          <span class="badge">Git & GitHub</span>
+          <span class="badge">Responsive Design</span>
+          <span class="badge">Figma basics</span>
+          <span class="badge">VS Code</span>
+          <span class="badge">Terminal basics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact section - clean and simple -->
+  <section>
+    <div class="container">
+      <h2>✉️ connect with christian</h2>
+      <div class="contact-modern">
+        <div class="contact-block">
+          <p>📧 <strong>Email</strong><br><span style="color:#bfdbfe;">c.langit@pangasinan.dev</span></p>
+          <p>📞 <strong>Phone</strong><br>+63 956 876 5432</p>
+          <p>🐙 <strong>GitHub</strong><br>github.com/christianlangit</p>
+          <p>📍 <strong>Base</strong><br>Mangaldan, Pangasinan, PH</p>
+        </div>
+        <div class="contact-block">
+          <p><strong>🤝 let's connect</strong></p>
+          <p>Feel free to reach out for study groups, feedback, or just a chat about tech. I'm always open to learning with others.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Christian Langit · First-Year IT — built with consistency from Mangaldan, Pangasinan</p>
+      <p style="margin-top: 0.5rem; font-style: italic;">“write code, stay curious, level up every single day.”</p>
+      <p style="margin-top: 0.65rem; font-size: 0.7rem;">🌾 Mangaldan, Pangasinan — Philippines</p>
+    </div>
+  </footer>
+</main>
+
+<script>
+  (function() {
+    console.log("⚓ Christian Langit | Navy portfolio · Mangaldan, Pangasinan — first-year IT");
+    
+    // Hover logging for skill cards (interactive console feedback)
+    const skillElements = document.querySelectorAll('.skill-card');
+    skillElements.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const titleElem = card.querySelector('h3');
+        if (titleElem) {
+          console.log(`[Christian | Mangaldan] exploring: ${titleElem.innerText}`);
+        }
+      });
+    });
+    
+    // Additional smooth effect for welcome
+    const mainTitle = document.querySelector('h1');
+    if(mainTitle) {
+      mainTitle.addEventListener('click', () => {
+        console.log("🌊 Christian Langit — navy blueprint · built in Mangaldan, Pangasinan");
+      });
+    }
+  })();
+</script>
+</body>
+</html>
